@@ -15,7 +15,7 @@ h1{
 
 .txt{
     text-align: center;
-    margin-top: 4rem;
+    margin-top: 2rem;
     font-size: 1.5rem;
 }
 
@@ -23,24 +23,34 @@ h1{
     display: flex;
     justify-content: center;
     font-size: 1.5rem;
-    margin-top: 4rem;
+    margin-top: 3rem;
 }
-#user-weapon{
-    margin-right: 8rem;
-}
-.sign {
-    height: 10rem;
-    width: 10rem;
+
+.blank{
+    height: 8rem;
+    width: 8rem;
     font-size: 6rem;
     text-align: center;
     padding-top: 0.8rem;
+    margin-left: -1rem;
+}
+#user-weapon{
+    margin-right: 6rem;
+}
+.sign {
+    height: 8rem;
+    width: 8rem;
+    font-size: 6rem;
+    text-align: center;
+    padding-top: 0.8rem;
+    margin-left: -1rem;
 }
 
 #weapon-list{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 5rem;
+    margin-top: 1rem;
 }
 #rock, #paper, #scissor {
     margin: 1rem;
@@ -56,4 +66,42 @@ h1{
 #rock:hover, #paper:hover, #scissor:hover {
     background-color: rgb(74, 74, 74);
     cursor: pointer;
+}
+
+.round{
+    font-size: 1.7rem;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+footer {
+    position: absolute;
+    bottom: -0.1px;
+    left: 40%;
+    font-size: 1.4rem;
+}
+@media only screen and (max-width: 600px) {
+    .round{
+        margin-top: 2rem;
+    }
+    #rock, #paper, #scissor {
+        margin: 0.3rem;
+        height: 9rem;
+        width: 8rem;
+        font-size: 5.5rem;
+        text-align: center;
+    }
+    footer {
+        top: 97%;
+        left: 13%;
+    }
+}
+a{
+    text-decoration: none;
+}
+a:hover {
+    font-size: 1.55rem;
+}
+hr {
+    margin: 0 5%;
 }

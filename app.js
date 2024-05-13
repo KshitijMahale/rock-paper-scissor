@@ -8,6 +8,10 @@ let humanChoice;
 
 let h2 = document.querySelector("h2");
 let p = document.querySelector(".txt p");
+let displayRound = document.querySelector(".round");
+let dis = document.createElement("p");
+dis.textContent = `Rounds left: ${5-round}`;
+displayRound.appendChild(dis);
 
 let userWeaponDiv = document.querySelector("#user-weapon");
 let H_score = document.createElement("p");
@@ -18,6 +22,10 @@ let computerWeaponDiv = document.querySelector("#computer-weapon");
 let C_score = document.createElement("p");
 C_score.textContent = `Computer: ${computerScore}`;
 computerWeaponDiv.appendChild(C_score);
+let blankDiv = document.createElement("div");
+blankDiv.textContent = "";
+blankDiv.className = "blank";
+computerWeaponDiv.appendChild(blankDiv);
 
 let rock = document.querySelector("#rock");
 let paper = document.querySelector("#paper");
@@ -84,7 +92,7 @@ function getHumanChoice(choice) {
                     h2.innerText = "Sorry! You Lost";
                 }
                 started = false;
-            }, 1000);
+            }, 1200);
         }
     }
 }
@@ -136,6 +144,7 @@ function playGame(choice){
     console.log(`p: ${humanScore}   C:${computerScore}`);
     H_score.textContent = `Player: ${humanScore}`;
     C_score.textContent = `Computer: ${computerScore}`;
+    dis.textContent = `Rounds left: ${5-round}`;
 }
 
 function won(){
