@@ -1,7 +1,8 @@
+let started = true;
 let humanScore = 0;
 let computerScore = 0;
 let options = ["rock", "paper", "scissor"];
-let round = 1;
+let round = 0;
 let computerChoice;
 let humanChoice;
 
@@ -18,76 +19,123 @@ let C_score = document.createElement("p");
 C_score.textContent = `Computer: ${computerScore}`;
 computerWeaponDiv.appendChild(C_score);
 
-while(round <= 5){
-    // playGame();
-    round++;
-}
-setTimeout(() => {
-    p.remove();
-    console.log(`Player score: ${humanScore} Computer score: ${computerScore}`);
+let rock = document.querySelector("#rock");
+let paper = document.querySelector("#paper");
+let scissor = document.querySelector("#scissor");
+let sign = document.createElement("p");
+sign.className = "sign";
 
-    if(humanScore == computerChoice){
-        h2.innerText = "It's a tie!";
-    }
-    else if(humanScore > computerScore){
-        h2.innerText = "Congratulations! You Won The Game";
+rock.addEventListener("click", () => {
+    getHumanChoice("rock");
+});
 
-    }
-    else {
-        h2.innerText = "Sorry! You Lost";
-    }
-}, 2000);
+paper.addEventListener("click", () => {
+    getHumanChoice("paper");
+});
 
+scissor.addEventListener("click", () => {
+    getHumanChoice("scissor");
+});
 
 function getComputerChoice(){
     let num = Math.floor(Math.random() * 3);
+    let sign = document.createElement("p");
+    sign.className = "sign";
+    if(num == 0){
+        sign.textContent = "✊";
+    }
+    else if(num == 1){
+        sign.textContent = "✋";
+    }
+    else if(num == 2){
+        sign.textContent = "✌";
+    }
+    computerWeaponDiv.appendChild(sign);
+
+    if (computerWeaponDiv.children.length > 2) { //clear previous choice
+        computerWeaponDiv.removeChild(computerWeaponDiv.children[1]);
+    }
     return options[num];
 }
 
-function getHumanChoice(){
-    let choice = prompt("Enter choice in numbers:     1.Rock   2.Paper   3.Scissor");
-    return options[choice-1];
-}
-
-function playGame(){
-    computerChoice = getComputerChoice();
-    humanChoice = getHumanChoice();
-    playRound(humanChoice, computerChoice);
-
-    function playRound(humanChoice, computerChoice) {
-        console.log(`Your weapon : ${humanChoice}`);
-        console.log(`Computer weapon : ${computerChoice}`);
-
-        if(humanChoice == computerChoice) {
-            h2.innerText = "It's a tie!"
-            p.innerText = `${humanChoice} ties with ${computerChoice}`;
-            console.log(`${humanChoice} ties with ${computerChoice}`);
+function getHumanChoice(choice) {
+    if(started){
+        let sign = document.createElement("p");
+        sign.className = "sign";
+        sign.textContent = getSignEmoji(choice);
+        userWeaponDiv.appendChild(sign);
+    
+        if (userWeaponDiv.children.length > 2) { //clear previous choice
+            userWeaponDiv.removeChild(userWeaponDiv.children[1]);
         }
-        else if(humanChoice == "rock"){
-            if(computerChoice == "paper"){
-                lost();
-            }
-            else if(computerChoice == "scissor"){
-                won();
-            }
-        }
-        else if(humanChoice == "paper"){
-            if(computerChoice == "scissor"){
-                lost();
-            }
-            else if(computerChoice == "rock"){
-                won();
-            }
-        }
-        else if(humanChoice == "scissor"){
-            if(computerChoice == "rock"){
-                lost();
-            }
-            else if(computerChoice == "paper"){
-                won();
-            }
+        playGame(choice);
+        if(round == 5){
+            setTimeout(()=>{
+                p.innerText = "Refresh the page to play again"
+                console.log(`Player score: ${humanScore} Computer score: ${computerScore}`);
+            
+                if(humanScore == computerScore){
+                    h2.innerText = "It's a tie!";
+                }
+                else if(humanScore > computerScore){
+                    h2.innerText = "Congratulations! You Won The Game";
+                }
+                else {
+                    h2.innerText = "Sorry! You Lost";
+                }
+                started = false;
+            }, 1000);
         }
     }
+}
+
+function getSignEmoji(choice) {
+    if (choice === "rock") return "✊";
+    else if (choice === "paper") return "✋";
+    else if (choice === "scissor") return "✌";
+}
+
+function playGame(choice){
+    round++;
+    console.log(round);
+    humanChoice = choice;
+    computerChoice = getComputerChoice();
+
+    console.log(`Your weapon : ${humanChoice}`);
+    console.log(`Computer weapon : ${computerChoice}`);
+
+    if(humanChoice == computerChoice) {
+        h2.innerText = "It's a tie!"
+        p.innerText = `${humanChoice} ties with ${computerChoice}`;
+        console.log(`${humanChoice} ties with ${computerChoice}`);
+    }
+    else if(humanChoice == "rock"){
+        if(computerChoice == "paper"){
+            lost();
+        }
+        else if(computerChoice == "scissor"){
+            won();
+        }
+    }
+    else if(humanChoice == "paper"){
+        if(computerChoice == "scissor"){
+            lost();
+        }
+        else if(computerChoice == "rock"){
+            won();
+        }
+    }
+    else if(humanChoice == "scissor"){
+        if(computerChoice == "rock"){
+            lost();
+        }
+        else if(computerChoice == "paper"){
+            won();
+        }
+    }
+    console.log(`p: ${humanScore}   C:${computerScore}`);
+    H_score.textContent = `Player: ${humanScore}`;
+    C_score.textContent = `Computer: ${computerScore}`;
 }
 
 function won(){
