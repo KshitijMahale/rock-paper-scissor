@@ -1,0 +1,53 @@
+*{
+    color: white;
+    background-color: rgb(31, 31, 31);
+    margin: 0;
+    padding: 0;
+}
+
+h1{
+    background-color: black;
+    color: goldenrod;
+    padding: 2rem;
+    text-align: center;
+    font-size: 3.5rem;
+}
+
+.txt{
+    text-align: center;
+    margin-top: 4rem;
+    font-size: 1.5rem;
+    /* font-weight: bold; */
+}
+
+.selected-weapon{
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-top: 4rem;
+}
+#user-weapon{
+    margin-right: 8rem;
+}
+
+#weapon-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+}
+#rock, #paper, #scissor {
+    margin: 1rem;
+    height: 10rem;
+    width: 10rem;
+    background-color: rgb(57, 57, 57);
+    border-radius: 1rem;
+    font-size: 6rem;
+    text-align: center;
+    padding-top: 0.8rem;
+}
+
+#rock:hover, #paper:hover, #scissor:hover {
+    background-color: rgb(74, 74, 74);
+    cursor: pointer;
+}
